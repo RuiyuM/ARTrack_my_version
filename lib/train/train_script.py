@@ -27,6 +27,8 @@ def names2datasets(name_list: list, settings, image_loader):
     datasets = []
     #settings.use_lmdb = True
     for name in name_list:
+        # assert name in ["GOT10K_train_full", "GOT10K_official_val",
+        #                 ]
         assert name in ["LASOT", "GOT10K_vottrain", "GOT10K_votval", "GOT10K_train_full", "GOT10K_official_val",
                         "COCO17", "VID", "TRACKINGNET"]
         if name == "LASOT":
@@ -150,7 +152,7 @@ def run(settings):
     elif settings.script_name == "artrack_seq":
         net = build_artrack_seq(cfg)
         dataset_train = sequence_sampler.SequenceSampler(
-            datasets=names2datasets(cfg.DATA.TRAIN.DATASETS_NAME, settings, opencv_loader),
+            datasets=names2datasets(['GOT10K_vottrain'], settings, opencv_loader),
             p_datasets=cfg.DATA.TRAIN.DATASETS_RATIO,
             samples_per_epoch=cfg.DATA.TRAIN.SAMPLE_PER_EPOCH,
             max_gap=cfg.DATA.MAX_GAP, max_interval=cfg.DATA.MAX_INTERVAL,

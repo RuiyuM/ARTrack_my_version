@@ -193,7 +193,7 @@ class SequenceSampler(torch.utils.data.Dataset):
         """
 
         # Select a dataset
-        dataset = random.choices(self.datasets, self.p_datasets)[0]
+        dataset = self.datasets[0]
         if dataset.get_name() == 'got10k' :
             max_gap = self.max_gap
             max_interval = self.max_interval
